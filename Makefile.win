@@ -1,0 +1,46 @@
+# Project: Chip-8-emulater
+# Makefile created by Embarcadero Dev-C++ 6.3
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o src/chip_8_cpu.o src/chip_8_emulator.o src/chip_8_gpu.o src/chip_8_keyboard.o src/chip_8_memory.o board/chip_8_board.o
+LINKOBJ  = main.o src/chip_8_cpu.o src/chip_8_emulator.o src/chip_8_gpu.o src/chip_8_keyboard.o src/chip_8_memory.o board/chip_8_board.o
+LIBS     = -L"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib" -L"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
+CXXINCS  = -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
+BIN      = Chip-8-emulater.exe
+CXXFLAGS = $(CXXINCS) -w -g3
+CFLAGS   = $(INCS) -w -g3
+DEL      = E:\Program Files (x86)\Embarcadero\Dev-Cpp\DevCpp.exe INTERNAL_DEL
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${DEL} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+src/chip_8_cpu.o: src/chip_8_cpu.c
+	$(CC) -c src/chip_8_cpu.c -o src/chip_8_cpu.o $(CFLAGS)
+
+src/chip_8_emulator.o: src/chip_8_emulator.c
+	$(CC) -c src/chip_8_emulator.c -o src/chip_8_emulator.o $(CFLAGS)
+
+src/chip_8_gpu.o: src/chip_8_gpu.c
+	$(CC) -c src/chip_8_gpu.c -o src/chip_8_gpu.o $(CFLAGS)
+
+src/chip_8_keyboard.o: src/chip_8_keyboard.c
+	$(CC) -c src/chip_8_keyboard.c -o src/chip_8_keyboard.o $(CFLAGS)
+
+src/chip_8_memory.o: src/chip_8_memory.c
+	$(CC) -c src/chip_8_memory.c -o src/chip_8_memory.o $(CFLAGS)
+
+board/chip_8_board.o: board/chip_8_board.c
+	$(CC) -c board/chip_8_board.c -o board/chip_8_board.o $(CFLAGS)
